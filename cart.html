@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let html = "";
+            let grandTotal = 0;
+
+            if (cart.length === 0) {
+                document.getElementById("cartArea").innerHTML =
+                    "<h3>Your cart is empty</h3>";
+                return;
+            }
+
+            html += `
+            <table border="1" cellpadding="10" cellspacing="0"
+                   style="margin:auto;border-collapse:collapse;background:white;">
+            <tr style="background:#8e44ad;color:white;">
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>`;
+
+            cart.forEach((item, index) => {
+                let total = item.price * item.qty;
+                grandTotal += total;
+
+                html += `
+                <tr>
+                    <td><img src="${item.img}" width="60"></td>
+                    <td>${item.name}</td>
+                    <td>₹${item.price}</td>
+                    <td>
+                        <input type="number" min="1" value="${item.qty}"
+                               onchange="updateQty(${index}, this.value)">
+                    </td>
+                    <td>₹${total}</td>
+                </tr>`;
+            });
+
+            html += `
+            </table>
+            <h2 style="text-align:center;">Grand Total: ₹${grandTotal}</h2>`;
+
+            document.getElementById("cartArea").innerHTML = html;
+        }
+
+        function updateQty(index, qty) {
+            let cart = JSON.parse(localStorage.getItem("cart"));
+            cart[index].qty = parseInt(qty);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+    </script>
+</head>
+
+<body onload="loadCart()" style="margin:0;font-family:Arial;background:#f9f9f9;">
+
+<div style="background:#8e44ad;color:white;padding:20px;text-align:center;">
+    <h1>Your Cart</h1>
+</div>
+
+<div id="cartArea" style="padding:30px;text-align:center;"></div>
+
+<div style="text-align:center;margin-top:20px;">
+    <a href="catalogue.html">Continue Shopping</a> |
+    <a href="#" onclick="clearCart()">Clear Cart</a>
+</div>
+
+</body>
+</html>

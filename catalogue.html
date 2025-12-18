@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catalogue</title>
+
+    <script>
+        function addToCart(name, price, img) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            let item = cart.find(p => p.name === name);
+            if (item) {
+                item.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1, img });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            window.location.href = "cart.html";
+        }
+    </script>
+</head>
+
+<body style="margin:0;font-family:Arial;background:#ecf0f1;">
+
+<div style="background:#16a085;color:white;padding:20px;text-align:center;">
+    <h1>Product Catalogue</h1>
+</div>
+
+<!-- ROW 1 -->
+<div style="display:flex;justify-content:center;gap:40px;padding:30px;">
+
+    <div style="background:white;width:220px;padding:15px;text-align:center;border-radius:10px;">
+        <img src="file:///C:/Users/medap/OneDrive/Desktop/Mobile.webp"
+             width="150" height="150" style="object-fit:contain;"><br>
+        <h3>Mobile</h3>
+        <p style="color:green;">₹15000</p>
+        <button onclick="addToCart('Mobile',15000,
+        'file:///C:/Users/medap/OneDrive/Desktop/Mobile.webp')">Add to Cart</button>
+    </div>
+
+    <div style="background:white;width:220px;padding:15px;text-align:center;border-radius:10px;">
+        <img src="file:///C:/Users/medap/OneDrive/Desktop/laptop.webp"
+             width="150" height="150" style="object-fit:contain;"><br>
+        <h3>Laptop</h3>
+        <p style="color:green;">₹55000</p>
+        <button onclick="addToCart('Laptop',55000,
+        'file:///C:/Users/medap/OneDrive/Desktop/laptop.webp')">Add to Cart</button>
+    </div>
+
+    <div style="background:white;width:220px;padding:15px;text-align:center;border-radius:10px;">
+        <img src="file:///C:/Users/medap/OneDrive/Desktop/tablet.webp"
+             width="150" height="150" style="object-fit:contain;"><br>
+        <h3>Tablet</h3>
+        <p style="color:green;">₹22000</p>
+        <button onclick="addToCart('Tablet',22000,
+        'file:///C:/Users/medap/OneDrive/Desktop/tablet.webp')">Add to Cart</button>
+    </div>
+
+</div>
+
+<!-- ROW 2 -->
+<div style="display:flex;justify-content:center;gap:40px;padding-bottom:40px;">
+
+    <div style="background:white;width:220px;padding:15px;text-align:center;border-radius:10px;">
+        <img src="file:///C:/Users/medap/OneDrive/Desktop/headphones.webp"
+             width="150" height="150" style="object-fit:contain;"><br>
+        <h3>Headphones</h3>
+        <p style="color:green;">₹2000</p>
+        <button onclick="addToCart('Headphones',2000,
+        'file:///C:/Users/medap/OneDrive/Desktop/headphones.webp')">Add to Cart</button>
+    </div>
+
+    <div style="background:white;width:220px;padding:15px;text-align:center;border-radius:10px;">
+        <img src="file:///C:/Users/medap/OneDrive/Desktop/earphones.png"
+             width="150" height="150" style="object-fit:contain;"><br>
+        <h3>Earphones</h3>
+        <p style="color:green;">₹1200</p>
+        <button onclick="addToCart('Earphones',1200,
+        'file:///C:/Users/medap/OneDrive/Desktop/earphones.png')">Add to Cart</button>
+    </div>
+
+    <div style="background:white;width:220px;padding:15px;text-align:center;border-radius:10px;">
+        <img src="file:///C:/Users/medap/OneDrive/Desktop/ear%20buds.webp"
+             width="150" height="150" style="object-fit:contain;"><br>
+        <h3>Earbuds</h3>
+        <p style="color:green;">₹3500</p>
+        <button onclick="addToCart('Earbuds',3500,
+        'file:///C:/Users/medap/OneDrive/Desktop/ear%20buds.webp')">Add to Cart</button>
+    </div>
+
+</div>
+
+</body>
+</html>
